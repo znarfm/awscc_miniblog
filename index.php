@@ -32,7 +32,10 @@ if ($search) {
         <form class="search-form" method="GET" action="index.php">
             <div class="form-group">
                 <input type="text" name="search" placeholder="Search posts..." value="<?php echo htmlspecialchars($search); ?>">
-                <button type="submit" class="button">Search</button>
+                <div class="search-buttons">
+                    <button type="submit" class="button">Search</button>
+                    <a href="index.php" class="button">Clear</a>
+                </div>
             </div>
         </form>
 
