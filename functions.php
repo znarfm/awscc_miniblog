@@ -80,3 +80,48 @@ function searchPosts($keyword) {
     }
     return $results;
 }
+
+function truncateHTML($text, $length = 200) {
+    // Decode HTML entities first
+    $decoded = html_entity_decode($text);
+    
+    // If the plain text is already shorter than length, return it
+    if (strlen(strip_tags($decoded)) <= $length) {
+        return $decoded;
+    }
+    
+    // Extract text without breaking HTML tags
+    $pattern = '/(<.*?>|[^<]*)/s';
+    preg_match_all($pattern, $decoded, $matches);
+    
+    $accumulated_length = 0;
+    $truncated = '';
+    $open_tags = [];
+    
+    foreach ($matches[0] as $piece) {
+        if (preg_match('/<(\w+).*?>/', $piece, $tag_matches)) {
+            // Opening tag
+            $truncated .= $piece;
+            array_push($open_tags, $tag_matches[1]);
+        } elseif (preg_match('/<\/(\w+)>/', $piece, $tag_matches)) {
+            // Closing tag
+            $truncated .= $piece;
+            array_pop($open_tags);
+        } else {
+            // Text content
+            if ($accumulated_length + strlen($piece) > $length) {
+                $truncated .= substr($piece, 0, $length - $accumulated_length) . '...';
+                break;
+            }
+            $truncated .= $piece;
+            $accumulated_length += strlen($piece);
+        }
+    }
+    
+    // Close any remaining open tags
+    foreach (array_reverse($open_tags) as $tag) {
+        $truncated .= "</{$tag}>";
+    }
+    
+    return $truncated;
+}

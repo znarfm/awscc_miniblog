@@ -48,7 +48,7 @@ if ($search) {
                 <article class="post">
                     <div class="post-content">
                         <a href="view_post.php?id=<?php echo $post['id']; ?>" class="post-title-link">
-                            <h2 class="post-title"><?php echo $post['title']; ?></h2>
+                            <h2 class="post-title"><?php echo html_entity_decode($post['title']); ?></h2>
                         </a>
                         <div class="post-meta">
                             Posted on <?php echo $post['created_at']; ?>
@@ -56,7 +56,7 @@ if ($search) {
                                 | Updated on <?php echo $post['updated_at']; ?>
                             <?php endif; ?>
                         </div>
-                        <p><?php echo nl2br(substr($post['content'], 0, 200)) . '...'; ?></p>
+                        <p><?php echo truncateHTML($post['content']); ?></p>
                         <div class="post-actions">
                             <div class="post-actions-left">
                                 <a href="view_post.php?id=<?php echo $post['id']; ?>" class="button">Read More</a>
