@@ -39,6 +39,8 @@ if ($search) {
             </div>
         </form>
 
+        <hr class="themed-hr">
+
         <?php if (empty($posts)): ?>
             <p>No posts found.</p>
         <?php else: ?>

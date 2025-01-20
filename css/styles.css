@@ -154,6 +154,7 @@ button[type="submit"] {
   margin-right: 0.5rem;
   font-size: 1rem; /* Add consistent font size */
   line-height: 1.2; /* Add consistent line height */
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
 .button:last-child,
@@ -247,9 +248,9 @@ textarea::placeholder {
 }
 
 .search-form {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;  /* Reduced from 3rem */
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--content-background);
+  border-bottom: none;    /* Removed original border */
 }
 
 .search-form .form-group {
@@ -290,4 +291,13 @@ textarea::placeholder {
 .alert-error {
   background-color: rgba(255, 85, 85, 0.2);
   color: #ff5555;
+}
+
+/* Add this new style */
+.themed-hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  margin: 0 0 1.5rem 0;
+  opacity: 0.5;
 }
