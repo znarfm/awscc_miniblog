@@ -32,6 +32,9 @@ function getPost($id) {
     $posts = loadPosts();
     foreach ($posts as $post) {
         if ($post['id'] == $id) {
+            // Decode HTML entities in title and content
+            $post['title'] = html_entity_decode($post['title']);
+            $post['content'] = html_entity_decode($post['content']);
             return $post;
         }
     }
