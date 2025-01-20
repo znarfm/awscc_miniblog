@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <form method="POST" action="edit_post.php?id=<?php echo $id; ?>">
+            <h2 class="form-title">Edit Post</h2>
             <div class="form-group">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
